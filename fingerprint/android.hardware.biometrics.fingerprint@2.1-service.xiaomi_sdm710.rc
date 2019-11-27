@@ -36,6 +36,9 @@ on boot
 
     chown system system /sys/devices/platform/soc/soc:fingerprint_goodix/proximity_state
 
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/msm_fb_ea_enable
+    chmod 0664 /sys/devices/platform/soc/soc:qcom,dsi-display/msm_fb_ea_enable
+
 on post-fs-data
     mkdir /data/vendor/fpc 0770 system system
     mkdir /data/vendor/goodix 0770 system system

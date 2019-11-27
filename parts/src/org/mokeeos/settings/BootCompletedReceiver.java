@@ -20,17 +20,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceManager;
 
 import org.mokeeos.settings.doze.DozeUtils;
+import org.mokeeos.settings.utils.FileUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
     private static final boolean DEBUG = false;
     private static final String TAG = "XiaomiParts";
+    private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
+    private static final String FILE_EA = "/sys/devices/platform/soc/soc:qcom,dsi-display/msm_fb_ea_enable";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
         DozeUtils.checkDozeService(context);
+        boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
+        FileUtils.writeLine(FILE_EA, dcDimmingEnabled ? "1" : "0");
     }
 }

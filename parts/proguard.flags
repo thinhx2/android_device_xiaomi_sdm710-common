@@ -1,3 +1,7 @@
 -keep class org.mokeeos.settings.doze.* {
   *;
 }
+
+-keep class org.mokeeos.settings.display.* {
+  *;
+}
