@@ -172,11 +172,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
-# Dex
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    TrebuchetQuickStep
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.3-service \
