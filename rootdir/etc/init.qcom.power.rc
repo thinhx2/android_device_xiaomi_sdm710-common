@@ -44,7 +44,7 @@ on init
 
     # set default schedTune value for foreground/top-app
     write /dev/stune/foreground/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.boost 10
+    write /dev/stune/top-app/schedtune.boost 5
     write /dev/stune/top-app/schedtune.prefer_idle 1
 
     # Add a cpuset for the camera daemon
@@ -63,9 +63,6 @@ on boot
     write /dev/cpuset/foreground/boost/cpus 0-7
     write /dev/cpuset/background/cpus 0-7
     write /dev/cpuset/system-background/cpus 0-7
-
-    #Enable suspend to idle mode to reduce latency during suspend/resume
-    write /sys/power/mem_sleep "s2idle"
 
 on charger
     write /sys/devices/system/cpu/cpu0/online 1
@@ -141,9 +138,6 @@ on enable-low-power
     write /sys/module/cpu_boost/parameters/powerkey_input_boost_freq "0:1209600 1:0 2:0 3:0 4:0 5:0 6:2054400 7:0"
     write /sys/module/cpu_boost/parameters/powerkey_input_boost_ms 400
 
-    # Enable oom_reaper
-    write /sys/module/lowmemorykiller/parameters/oom_reaper 1
-
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 50
@@ -208,9 +202,6 @@ on enable-low-power
     # Enable adaptive LMK for all targets &
     # use Google default LMK series for all 64-bit targets >=2GB.
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-
-    # Set LMK minfree
-    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,85296,120640"
 
     # Post-setup services
     setprop vendor.post_boot.parsed 1
