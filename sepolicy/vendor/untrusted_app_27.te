@@ -1,0 +1,2 @@
+# Allow Settings to read theme_prop
+get_prop(untrusted_app_27, theme_prop)
