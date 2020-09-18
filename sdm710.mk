@@ -56,9 +56,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-0.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml \
@@ -77,8 +77,8 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-service \
-    android.hardware.audio@5.0-impl \
-    android.hardware.audio.effect@5.0-impl \
+    android.hardware.audio@6.0-impl \
+    android.hardware.audio.effect@6.0-impl \
     android.hardware.soundtrigger@2.2-impl \
     audio.a2dp.default \
     audio.primary.sdm710 \
@@ -134,7 +134,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     libdng_sdk.vendor \
     libstdc++.vendor \
-    Snap \
+    Camera2
     vendor.qti.hardware.camera.device@1.0.vendor
 
 # Codec2
@@ -167,8 +167,8 @@ PRODUCT_PACKAGES += \
     android.hardware.contexthub@1.0-service
 
 # Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
+#PRODUCT_PACKAGES += \
+#    XiaomiParts
 
 # Display
 PRODUCT_PACKAGES += \
@@ -189,7 +189,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.2-service.clearkey
+    android.hardware.drm@1.3-service.clearkey
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
@@ -224,11 +224,11 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # IFAA manager
-PRODUCT_PACKAGES += \
-    org.ifaa.android.manager
+#PRODUCT_PACKAGES += \
+#    org.ifaa.android.manager
 
-PRODUCT_BOOT_JARS += \
-    org.ifaa.android.manager
+#PRODUCT_BOOT_JARS += \
+#    org.ifaa.android.manager
 
 # IMS
 PRODUCT_PACKAGES += \
@@ -319,7 +319,8 @@ PRODUCT_COPY_FILES += \
 # Radio
 PRODUCT_PACKAGES += \
     libjson \
-    librmnetctl
+    librmnetctl \
+    libprotobuf-cpp-full \
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -361,9 +362,7 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0-impl \
-    android.hardware.thermal@1.0-service \
-    thermal.sdm710
+    android.hardware.thermal@2.0-service.mock
 
 # Tracing
 PRODUCT_PACKAGES += \
@@ -424,8 +423,8 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     libqdMetaData.system
 
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+#PRODUCT_BOOT_JARS += \
+#    WfdCommon
 
 # Set boot SPL
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
